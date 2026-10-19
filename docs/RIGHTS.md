@@ -1,9 +1,9 @@
-# 数据权利与许可边界
+# Data Rights and License Scope
 
-MIT许可只覆盖本仓库贡献者原创的代码、文档和人工合成示例，不覆盖游戏资产、官方文案、平台数据或未公开的第三方真实记录。
+The MIT license covers only contributors' original code, documentation, and hand-authored synthetic examples in this repository. It does not cover game assets, official descriptions, platform data, or unpublished third-party real records.
 
-真实记录当前不随仓库分发，也没有被本项目授予开放数据许可。可查看、可获取或在平台上公开，并不自动等于可以批量获取或重新发布。来源使用与再分发范围尚未厘清时，继续保持私有。
+Real records are not distributed with this repository, and the project has not placed them under an open-data license. Being viewable, retrievable, or publicly visible on a platform does not automatically permit bulk collection or republication. Keep records private while source-use and redistribution conditions remain unresolved.
 
-对任何后续真实数据或聚合发布，需要分别保留来源允许范围、隐私与可识别性评审、必要性及发布决定。不能用代码的开源许可替代这些条件。
+Any future release of real data or aggregates requires separate evidence of permitted source use, a privacy and identifiability review, an assessment of necessity, and a release decision. The code's open-source license is not a substitute for those conditions.
 
-游戏名称仅用于描述研究对象；本项目不是官方产品，未声明官方背书。仓库不包含游戏图像、头像、官方卡牌描述库或其他打包游戏资产。
+The game name identifies the research subject. This is not an official product and does not claim official endorsement. The repository contains no game images, avatars, official card-description database, or bundled game assets.

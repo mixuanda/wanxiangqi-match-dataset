@@ -1,15 +1,15 @@
-# 首版验证记录
+# Release Audit
 
-本版公开的是20个允许清单内的原创代码、文档、机器契约与合成样例文件，真实记录公开数量为0。没有发布数据库、原始包、压缩包、图片、请求日志或个人信息文件，也不继承其他工程历史。
+This release contains 20 allowlisted files: original code, documentation, a machine-readable schema, and synthetic examples. It publishes zero real records. It includes no database, source archive, compressed data bundle, image, request log, or personal-information file, and does not inherit another project's history.
 
-验收范围：
+The release checks cover:
 
-- 14项测试通过，覆盖字段清洗、未知值、等级/星级分离、卡牌摘要语义、真实记录公开拒绝、嵌套未知字段拒绝，以及删除后的Git历史敏感内容和压缩包拒绝。
-- 人工合成样例通过公开结构验证。
-- 发布允许清单与文本模式扫描通过，并检查全部可达Git提交和blob；发布文件使用独立的通用贡献者提交身份。
-- 逐文件人工复核：没有复制真实记录、玩家昵称、个人头像、玩家链接、可反查对局信息、内部路径、凭据或私有工程材料。
+- 14 passing tests for field cleaning, unknown values, level/star separation, card-summary semantics, rejection of real-record publication, rejection of unknown nested fields, and detection of removed sensitive content in Git history and unapproved archives.
+- Successful public-schema validation of the hand-authored synthetic example.
+- A passing release inventory and text-pattern scan, including every reachable Git commit and blob. Release commits use a separate, generic contributor identity.
+- Manual review of every file: no copied real records, player nicknames, personal avatars, profile links, traceable match details, internal paths, credentials, or private engineering material.
 
-复核命令：
+Reproduce the checks:
 
 ```bash
 python -B -m unittest discover -s tests -v
@@ -17,4 +17,4 @@ python -B -m wxqdata validate examples/synthetic.json
 python -B -m wxqdata scan . --history
 ```
 
-任何新增文件都需要更新允许清单并重新审查；把文件加入清单本身不是审查通过。扫描识别已知模式，不能证明所有隐私风险都被自动识别，也不能证明第三方数据的使用权。因此真实记录发布门槛继续关闭，来源和再识别审查仍是后续条件。
+Any added file requires an allowlist update and a fresh review. Adding a path to the allowlist is not itself approval. Pattern scans cannot establish that every privacy risk has been detected or that third-party data may be reused. Real-record publication therefore remains disabled, pending source-rights and re-identification reviews.

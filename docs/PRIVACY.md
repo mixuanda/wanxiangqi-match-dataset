@@ -1,23 +1,23 @@
-# 隐私与发布门槛
+# Privacy and Release Requirements
 
-首版真实记录公开数量为0，真实记录发布开关保持关闭。只有人工编写的合成示例通过公开验证。
+This release publishes zero real records. Real-record publication remains disabled. Only hand-authored synthetic examples are accepted by the public validator.
 
-## 两层允许清单
+## Two allowlists
 
-1. `validation.FIELDS`和JSON Schema限定每层字段。清洗时重建对象与局部关系键，不复制未知字段、身份键、时间、URL、原始载荷或任意备注。私有输出无法直接通过公开验证。
-2. `PUBLISH_FILES.json`限定全部发布文件。扫描器检查工作树、所有可达Git历史blob、文件名和提交文本；拒绝未批准文件、二进制、压缩包、数据库、符号链接及过大文件。历史中删除过的敏感文件也会使检查失败。
+1. `validation.FIELDS` and the JSON Schema define the fields at every level. Cleaning rebuilds records and local relationship keys without copying unknown fields, identity keys, timestamps, URLs, raw payloads, or arbitrary notes. Private output cannot pass public validation directly.
+2. `PUBLISH_FILES.json` defines the release inventory. The scanner checks the working tree, every reachable Git history blob, filenames, and commit text. It rejects unapproved files, binary files, archives, databases, symlinks, and oversized files. Sensitive content deleted from the current tree still fails the history check.
 
-文本扫描识别长数字标识、精确时间、用户目录、部分凭据和来源伪名等模式；它不是完整的个人信息识别器，也不能证明匿名性。来源标记和`toy-`命名也不是自动可信的来源证明。
+Text checks look for patterns such as long numeric identifiers, precise timestamps, user-directory paths, some credentials, and source pseudonyms. They are not a complete personal-information detector and do not prove anonymity. Origin labels and `toy-` names do not independently prove synthetic provenance either.
 
-## 即使哈希身份也仍可能识别
+## Hashed identity can still be identifiable
 
-罕见阵容、连续阶段轨迹、精确比赛时间、最终结果及可关联对局信息的组合可能反查到玩家。可重复的哈希还会增加跨表和跨版本关联能力。仅哈希账号ID不充分，字段删除也不等于获得再分发许可。
+Rare lineups, continuous stage trajectories, precise match times, outcomes, and linkable match details can be combined to identify a player. Repeatable hashes can increase linkability across tables and releases. Hashing an account ID is not sufficient, and removing fields does not grant redistribution rights.
 
-## 本版发布前检查
+## Release review
 
-- 使用独立新目录和新Git历史，不继承私有仓库历史或作者联系信息。
-- 人工查看每个文件、测试、样例、文档和许可；没有原始包、记录摘抄、玩家链接、头像或截图。
-- 执行结构/隐私拒绝测试和完整历史扫描；发布后核对远端文件清单与本地一致。
-- 不把私人路径、凭据、请求日志或私有工程交接信息带入审计报告。
+- Use a separate directory and new Git history without inheriting private repository history or author contact information.
+- Review every file, test, example, document, and license. Do not include source archives, real-record excerpts, profile links, avatars, or screenshots.
+- Run structural and privacy rejection tests and scan the full reachable history. After publication, compare the remote file inventory with the reviewed local version.
+- Keep private paths, credentials, request logs, and private engineering handoff material out of audit reports.
 
-今后真实数据必须先单独审查来源允许的使用/再分发范围、必要性、再识别风险、聚合与抑制方案、删除/纠错流程及发布责任。未满足前不公开记录，也不接受未经审查的数据PR。
+Before any future real-data release, separately review permitted source use and redistribution, necessity, re-identification risk, aggregation and suppression, deletion and correction procedures, and responsibility for the release. Until those conditions are met, do not publish real records or accept unreviewed data pull requests.

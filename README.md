@@ -1,18 +1,18 @@
-# 王者万象棋对局数据研究
+# Wanxiangqi Match Data Research (王者万象棋)
 
-研究对局数据的字段、质量、隐私保护与可重复分析，长期目标是在来源允许、隐私可控的前提下，逐步扩大对高段位公开对局的覆盖。
+Research on match data schemas, quality, privacy, and reproducible analysis. Our long-term goal is to expand coverage of public matches from high competitive tiers, subject to source permissions and privacy review.
 
-**首版只公开原创文档、离线清洗与验证代码、完全合成的样例。真实对局记录公开数量为0。** 这不是官方项目，也不是已经覆盖全部高段位的开放数据集。
+**This release contains only original documentation, offline cleaning and validation code, and entirely synthetic examples. It publishes zero real match records.** This is an independent research project, not an official product or a dataset with comprehensive high-tier coverage.
 
-## 当前掌握了什么
+## What has been reviewed
 
-对一批既有本地样本完成了私有结构核验：476场、2,856条参赛观察、47,586条阶段记录。来源集中在一个入口角色；同局六名参赛者与同一人的重复阶段不能当作独立样本。对局内名次不等于玩家段位，当前不能据此证明高段位代表性。
+A retained local sample has undergone private structural checks: 476 matches, 2,856 participant observations, and 47,586 stage records. The sample comes through a single source profile. The six participants in a match and repeated stages of the same participant are dependent observations. Final placement within a match is not a player's competitive tier; this sample does not establish high-tier representation.
 
-真实记录、原始包、玩家标识、昵称、头像、玩家链接、可反查的对局标识与精确时间、请求日志和凭据均不在仓库中。来源使用与再分发限制尚未厘清的真实记录继续保持私有；删除或哈希账号标识也不代表轨迹已经匿名。
+Real records, source archives, player identifiers, nicknames, avatars, profile links, traceable match identifiers, precise timestamps, request logs, and credentials are not included. Real records remain private while source-use and redistribution conditions are unresolved. Removing or hashing account identifiers does not make a match trajectory anonymous.
 
-## 本地使用
+## Run locally
 
-只需要Python标准库，无网络请求或采集命令：
+The tools use only the Python standard library. They do not make network requests or collect data.
 
 ```bash
 python -B -m unittest discover -s tests -v
@@ -20,28 +20,32 @@ python -B -m wxqdata validate examples/synthetic.json
 python -B -m wxqdata scan . --history
 ```
 
-清洗器接受本仓库定义的通用研究草稿，**不是某个平台的API解析器**。先按字段字典准备输入，再输出到私有目录：
+The cleaner accepts the generic research draft defined by this project. **It is not a parser for a particular platform's API.** Prepare an input using the field dictionary, then write the cleaned draft to a private directory:
 
 ```bash
 python -B -m wxqdata clean draft.json .private/cleaned.json
 python -B -m wxqdata validate .private/cleaned.json --private
 ```
 
-清洗器使用字段允许清单，生成文件内的局部关系键，不复制来源身份键和时间。输出始终标记为`private_research`，公开验证器会拒绝它。清洗不等于发布许可，也不能消除阵容轨迹的可识别性。发布扫描故意拒绝仓库工作树中的未批准文件，包括私有草稿；请在独立工作目录处理真实数据。
+The cleaner rebuilds records from a field allowlist and creates local relationship keys. It does not copy source identity keys or timestamps. Its output is always marked `private_research` and is rejected by the public validator. Cleaning does not grant permission to publish or eliminate the possibility of identifying a match trajectory. The release scanner intentionally rejects unapproved files in the repository working tree, including private drafts. Process real data in a separate working directory.
 
-## 阅读顺序
+## Synthetic example
 
-- [字段字典](docs/FIELD_DICTIONARY.md)：最终阵容、阶段快照、卡牌汇总与未知字段。
-- [质量说明](docs/QUALITY.md)：模式、版本、时间、缺失、去重和训练泄漏。
-- [隐私与发布门槛](docs/PRIVACY.md)：字段/文件允许清单、完整Git历史检查及真实记录禁发。
-- [覆盖说明](docs/COVERAGE.md)：当前样本的范围和不具备的代表性。
-- [路线图](docs/ROADMAP.md)：逐步覆盖高段位公开对局的前置条件。
-- [数据权利与许可边界](docs/RIGHTS.md)、[首版验证记录](AUDIT.md)。
+`examples/synthetic.json` is hand-authored fiction. Its `toy-` labels do not identify real players, matches, game characters, or items, and its numbers do not describe actual gameplay. It illustrates a combat snapshot, an auction snapshot, card-count summaries, and explicit unknown values. For example, `board: null` means unknown, while an empty array means observed to be empty. The example is not suitable for measuring strategy performance.
 
-研究可以先从分模式的阶段阵容频率、成对快照变化和等级分布开始。快照差异不能倒推买卖动作，最终名次与高等级的相关性不能证明某策略提高胜率。当前不提供模型、自动对局工具或效果承诺。
+## Documentation
 
-## 参与方式
+- [Field dictionary](docs/FIELD_DICTIONARY.md): final lineups, stage snapshots, card summaries, and unknown fields.
+- [Data quality](docs/QUALITY.md): modes, versions, time, missingness, deduplication, and training leakage.
+- [Privacy and release requirements](docs/PRIVACY.md): field and file allowlists, complete reachable Git history checks, and the block on real-record publication.
+- [Coverage](docs/COVERAGE.md): the scope and limitations of the current sample.
+- [Roadmap](docs/ROADMAP.md): prerequisites for expanding coverage of public matches from high competitive tiers.
+- [Data rights and license scope](docs/RIGHTS.md) and the [release audit](AUDIT.md).
 
-欢迎改进字段契约、质量检查、合成案例和研究方法。请不要在Issue、PR、附件或截图中提交真实账号信息、对局链接、日志、凭据或未经审查的记录。真实数据的任何后续发布需要单独完成来源权利和再识别风险审查。
+Research can start with stage lineup frequencies by mode, paired snapshot comparisons, and level distributions. Snapshot differences do not reveal purchase or sale actions. An association between final placement and higher levels does not show that a strategy improves win rates. This release provides no model, automated gameplay tool, or claim of improved performance.
 
-原创代码、文档和人工合成示例采用[MIT](LICENSE)。该许可不授予游戏资产、平台内容或未公开第三方真实记录的使用与再分发权。
+## Contributing
+
+Contributions to field contracts, quality checks, synthetic cases, and research methods are welcome. Do not submit real account information, match links, logs, credentials, or unreviewed records in issues, pull requests, attachments, or screenshots. Any future release of real data requires a separate review of source rights and re-identification risk.
+
+Original code, documentation, and hand-authored synthetic examples are licensed under [MIT](LICENSE). This license does not grant rights to game assets, platform content, or unpublished third-party match records.

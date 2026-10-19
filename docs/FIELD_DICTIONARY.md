@@ -1,21 +1,21 @@
-# 字段允许清单与语义
+# Field Allowlist and Semantics
 
-正式机器契约见`schemas/public-synthetic.schema.json`；Python验证器拒绝任何未知字段。所有层级都禁止任意metadata、原始响应、文本备注和身份字段。对象中保留的字段必须显式存在；未知标量用null，未知棋盘/装备/汇总列表也用null，已观察为空才用空数组。
+The machine-readable contract is `schemas/public-synthetic.schema.json`. The Python validator rejects unknown fields. No layer accepts arbitrary metadata, raw responses, free-text notes, or identity fields. Retained fields must be explicitly present. Unknown scalars use `null`; unknown boards, equipment lists, and summary lists also use `null`. Use an empty array only when a list was observed to be empty.
 
-| 层级 | 允许字段 | 解释 |
+| Level | Allowed fields | Meaning |
 |---|---|---|
-| 数据集 | schema_version, origin, matches | origin只有synthetic/private_research；公开只接受synthetic |
-| 对局 | sample_key, mode, patch, participants | sample_key是文件内局部键；不保存来源对局ID、时间和链接；patch未知不按日期猜测 |
-| 参赛观察 | actor_key, selected, final_rank, chess_player, final_board, stages | actor_key只在局内关联，不是跨局玩家身份；final_rank是对局内名次，不是段位 |
-| 阶段快照 | stage_index, phase, player_level, energy_left, hero_limit, board, card_summaries, auction | stage_index是已观察记录顺序，不保证连续游戏回合；phase明确战斗/拍卖/unknown |
-| 棋子观察 | unit, level, quality, star, equipment, position | 英雄等级、品质、显式星级互相独立；缺星级不能由等级或品质推导 |
-| 卡牌汇总 | kind, card, count | 获得/使用/移除摘要；不是购买、刷新、出售或输入顺序 |
-| 拍卖源摘要 | card, reported_cost_energy, reported_shared_energy | 仅保留确有的源值；不是完整备选、全部出价或已验证赢家 |
+| Dataset | schema_version, origin, matches | `origin` is `synthetic` or `private_research`; public validation accepts only `synthetic`. |
+| Match | sample_key, mode, patch, participants | `sample_key` is local to the file. Source match IDs, timestamps, and links are excluded. Do not infer an unknown patch from a date. |
+| Participant observation | actor_key, selected, final_rank, chess_player, final_board, stages | `actor_key` links observations within a match; it is not a player identity across matches. `final_rank` is final match placement, not competitive tier. |
+| Stage snapshot | stage_index, phase, player_level, energy_left, hero_limit, board, card_summaries, auction | `stage_index` orders observed records; it does not guarantee consecutive game rounds. `phase` explicitly distinguishes combat, auction, and unknown snapshots. |
+| Unit observation | unit, level, quality, star, equipment, position | Hero level, quality, and an explicitly reported star count are separate fields. Missing stars must not be derived from level or quality. |
+| Card summary | kind, card, count | Acquisition, use, or removal counts; not purchases, refreshes, sales, or an input-action sequence. |
+| Auction source summary | card, reported_cost_energy, reported_shared_energy | Only reported source values. These do not establish complete options, all bids, or a verified winner. |
 
-棋手与棋子属于不同实体域，即使中文名称相同也不能合并。`player_level`只表示棋手的报告等级，不能用某个英雄level替代。`hero_limit`与UI容量的对应需单独验证，不代表手牌/背包空间。
+The selected chess character (`chess_player`, 棋手) and a deployed hero (`unit`, 棋子) are different entity types, even when their names match. `player_level` refers only to the reported level of the chess character; a deployed hero's `level` is not a substitute. The mapping from `hero_limit` to UI capacity must be verified separately. It does not establish available hand or inventory space.
 
-`energy_left`可能是阶段结束值，不能默认视为决策前资金。负数必须保留并审查，不静默裁剪为0。跨模式的数值量级不能混用。
+`energy_left` may describe the end of a stage. Do not assume it is the cash available before a decision. Preserve negative source values for review instead of silently clipping them to zero. Resource scales from different modes must not be pooled.
 
-本版没有逐动作价格、时间戳、商店选项、手牌、刷新计数、点击回执或策略目标字段；缺失信息不能从卡牌摘要、最终阵容或最终等级贡献中倒推。
+This version has no fields for individual action prices or timestamps, shop offers, hand contents, refresh counters, click acknowledgements, or strategy goals. These cannot be reconstructed from card summaries, final lineups, or final level-contribution aggregates.
 
-合成公开样例的关系键与标签强制使用`toy-`前缀，patch保持null，数值是人工编造。把真实数据的标记改为synthetic并不构成合成来源证明；维护者仍须人工审核。
+Public synthetic keys and labels must use the `toy-` prefix. The patch remains `null`, and the numbers are invented. Changing a real record's origin to `synthetic` does not prove that it is synthetic; maintainers must still review its provenance.

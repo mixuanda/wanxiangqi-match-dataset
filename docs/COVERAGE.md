@@ -1,16 +1,16 @@
-# 当前覆盖
+# Current Coverage
 
-| 项目 | 当前状态 |
+| Item | Current status |
 |---|---|
-| 已私有核验的对局 | 476场，单一入口来源样本 |
-| 对应参赛观察 | 2,856条；不是2,856名独立玩家 |
-| 对应阶段记录 | 47,586条；包含不同阶段，不等同纯战斗回合数 |
-| 本仓库公开的真实记录 | 0 |
-| 本仓库公开的示例 | 人工合成，不能用于评估游戏策略 |
-| 高段位代表性 | 未验证；对局内名次不能替代段位 |
-| 全角色、全模式、全补丁覆盖 | 尚未具备 |
-| 决策前商店/报价/手牌/输入回执 | 不具备完整覆盖 |
+| Matches reviewed privately | 476, reached through a single source profile |
+| Participant observations | 2,856; not 2,856 independently sampled players |
+| Stage records | 47,586; includes different phases, not only combat rounds |
+| Real records published here | 0 |
+| Published examples | Hand-authored synthetic data; unsuitable for evaluating gameplay strategies |
+| High-tier representation | Unverified; final match placement is not competitive tier |
+| Coverage across all characters, modes, and patches | Not established |
+| Decision-time shop offers, prices, hand contents, and input acknowledgements | Incomplete |
 
-这些数字仅说明现有私有结构核验的范围，不是公开数据量，也不是平台或全体玩家覆盖率。源清单取回成功率不等于玩家胜率；缺失子集可能有选择偏差。
+These figures describe the scope of an existing private structural review. They are not the number of publicly released records or a measure of coverage across the platform or player population. Successful detail retrieval is not a player win rate. Missing records may introduce selection bias.
 
-精确的来源时间、对局标识和个人信息不在首版公开。数据来源与再分发条件未厘清的记录保持私有，不因本仓库采用开源代码许可而改变。
+Precise source times, match identifiers, and personal information are not published in this release. Records with unresolved source-use and redistribution conditions remain private. The repository's open-source code license does not change those conditions.
