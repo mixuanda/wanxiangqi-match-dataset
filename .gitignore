@@ -1,0 +1,13 @@
+.private/
+__pycache__/
+*.pyc
+*.zip
+*.gz
+*.tar
+*.7z
+*.rar
+*.sqlite*
+*.db
+.env*
+dist/
+build/

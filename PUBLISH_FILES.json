@@ -1,0 +1,26 @@
+{
+  "release": "0.1.0",
+  "data_policy": "synthetic_examples_only_no_real_records",
+  "files": [
+    ".gitattributes",
+    ".gitignore",
+    "AUDIT.md",
+    "LICENSE",
+    "PUBLISH_FILES.json",
+    "README.md",
+    "docs/COVERAGE.md",
+    "docs/FIELD_DICTIONARY.md",
+    "docs/PRIVACY.md",
+    "docs/QUALITY.md",
+    "docs/RIGHTS.md",
+    "docs/ROADMAP.md",
+    "examples/synthetic.json",
+    "schemas/public-synthetic.schema.json",
+    "tests/test_pipeline.py",
+    "wxqdata/__init__.py",
+    "wxqdata/__main__.py",
+    "wxqdata/cleaning.py",
+    "wxqdata/privacy_scan.py",
+    "wxqdata/validation.py"
+  ]
+}

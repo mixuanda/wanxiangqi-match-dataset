@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1",
+  "origin": "synthetic",
+  "matches": [
+    {
+      "sample_key": "toy-match-a",
+      "mode": "toy-mode-a",
+      "patch": null,
+      "participants": [
+        {
+          "actor_key": "toy-actor-a",
+          "selected": true,
+          "final_rank": 2,
+          "chess_player": "toy-chess-a",
+          "final_board": [
+            {
+              "unit": "toy-unit-b",
+              "level": 3,
+              "quality": 1,
+              "star": null,
+              "equipment": [
+                "toy-item-a"
+              ],
+              "position": [
+                0,
+                0
+              ]
+            }
+          ],
+          "stages": [
+            {
+              "stage_index": 0,
+              "phase": "combat_snapshot",
+              "player_level": 1,
+              "energy_left": 5,
+              "hero_limit": 5,
+              "board": [
+                {
+                  "unit": "toy-unit-a",
+                  "level": 3,
+                  "quality": 1,
+                  "star": null,
+                  "equipment": [
+                    "toy-item-a"
+                  ],
+                  "position": [
+                    0,
+                    0
+                  ]
+                }
+              ],
+              "card_summaries": [
+                {
+                  "kind": "acquired_summary",
+                  "card": "toy-unit-a",
+                  "count": 1
+                }
+              ],
+              "auction": null
+            },
+            {
+              "stage_index": 1,
+              "phase": "auction_snapshot",
+              "player_level": 2,
+              "energy_left": 3,
+              "hero_limit": 5,
+              "board": null,
+              "card_summaries": null,
+              "auction": {
+                "card": "toy-unit-b",
+                "reported_cost_energy": 2,
+                "reported_shared_energy": null
+              }
+            }
+          ]
+        },
+        {
+          "actor_key": "toy-actor-b",
+          "selected": false,
+          "final_rank": 1,
+          "chess_player": "toy-chess-b",
+          "final_board": null,
+          "stages": []
+        }
+      ]
+    }
+  ]
+}

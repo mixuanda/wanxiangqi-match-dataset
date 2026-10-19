@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mixuanda/wanxiangqi-match-dataset/blob/main/schemas/public-synthetic.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "origin",
+    "matches"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "origin": {
+      "const": "synthetic"
+    },
+    "matches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/match"
+      },
+      "maxItems": 5000
+    }
+  },
+  "$defs": {
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+      "maxLength": 80
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unit",
+        "level",
+        "quality",
+        "star",
+        "equipment",
+        "position"
+      ],
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "level": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "quality": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "star": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "equipment": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/label"
+          }
+        },
+        "position": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "card",
+        "count"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "acquired_summary",
+            "used_summary",
+            "removed_summary"
+          ]
+        },
+        "card": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "auction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "reported_cost_energy",
+        "reported_shared_energy"
+      ],
+      "properties": {
+        "card": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "reported_cost_energy": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "reported_shared_energy": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage_index",
+        "phase",
+        "player_level",
+        "energy_left",
+        "hero_limit",
+        "board",
+        "card_summaries",
+        "auction"
+      ],
+      "properties": {
+        "stage_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "phase": {
+          "enum": [
+            "combat_snapshot",
+            "auction_snapshot",
+            "unknown"
+          ]
+        },
+        "player_level": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "energy_left": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "hero_limit": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "board": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/unit"
+          },
+          "maxItems": 64
+        },
+        "card_summaries": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/summary"
+          }
+        },
+        "auction": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/auction"
+            }
+          ]
+        }
+      }
+    },
+    "participant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_key",
+        "selected",
+        "final_rank",
+        "chess_player",
+        "final_board",
+        "stages"
+      ],
+      "properties": {
+        "actor_key": {
+          "type": "string",
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "selected": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "final_rank": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "chess_player": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "final_board": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/unit"
+          },
+          "maxItems": 64
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stage"
+          },
+          "maxItems": 256
+        }
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_key",
+        "mode",
+        "patch",
+        "participants"
+      ],
+      "properties": {
+        "sample_key": {
+          "type": "string",
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^toy-[a-z]+(?:-[a-z]+)*$",
+          "maxLength": 80
+        },
+        "patch": {
+          "type": "null"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/participant"
+          },
+          "maxItems": 16
+        }
+      }
+    }
+  }
+}
