@@ -6,7 +6,11 @@ Research on match data schemas, quality, privacy, and reproducible analysis. Our
 
 ## What has been reviewed
 
-A retained local sample has undergone private structural checks: 476 matches, 2,856 participant observations, and 47,586 stage records. The sample comes through a single source profile. The six participants in a match and repeated stages of the same participant are dependent observations. Final placement within a match is not a player's competitive tier; this sample does not establish high-tier representation.
+The expanded private snapshot contains **671 full match details**, up from the preserved 476-match baseline: 195 additional details, 4,026 participant observations, and 67,149 stage records, including auction phases. A cached, character-filtered candidate list contains 818 cases in total; the other **147 cases have list summaries only**, not full trajectories. Full-detail coverage is 82.0% of that cached candidate list, not coverage of the player population.
+
+The sample still comes through a single source profile. The six participants in a match and repeated stages of the same participant are dependent observations. Final placement within a match is not a player's competitive tier; this sample does not establish high-tier representation.
+
+Collection stopped at one documented business response stating that a record was older than 30 days **or** its mode did not support details. The other 146 summary-only cases were not retried after that stop; their retained earlier outcomes are rate-limit failures. This is not evidence that 147 separate requests received the terminal refusal, nor that those 146 cases were never attempted. No unlock time was supplied, and this publication makes no new collection requests. See [coverage and availability](docs/COVERAGE.md).
 
 Real records, source archives, player identifiers, nicknames, avatars, profile links, traceable match identifiers, precise timestamps, request logs, and credentials are not included. Real records remain private while source-use and redistribution conditions are unresolved. Removing or hashing account identifiers does not make a match trajectory anonymous.
 

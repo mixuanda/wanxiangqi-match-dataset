@@ -8,6 +8,7 @@ The release checks cover:
 - Successful public-schema validation of the hand-authored synthetic example.
 - A passing release inventory and text-pattern scan, including every reachable Git commit and blob. Release commits use a separate, generic contributor identity.
 - Manual review of every file: no copied real records, player nicknames, personal avatars, profile links, traceable match details, internal paths, credentials, or private engineering material.
+- The coverage update uses aggregate totals and availability categories only. The 671 full details and 147 list-only cases remain private, including their exact match timestamps. No collection requests are made for publication.
 
 Reproduce the checks:
 

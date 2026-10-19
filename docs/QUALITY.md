@@ -14,7 +14,17 @@ Matches, participant observations, stages, and unit snapshots have different gra
 
 ## Limits of the current private sample
 
-The private structural review covers 476 matches reached through a single source profile, not a random sample across competitive tiers. Successfully retrieved details may favor newer or more accessible entries. Missing records are not guaranteed to be missing at random. The sample lacks verified competitive-tier labels, complete version information, and context from immediately before decisions. Individual real records and precise timestamps are not included in this public repository.
+The expanded private structural review covers 671 full details reached through one source profile, plus 147 candidates with list summaries only. This is not a random sample across competitive tiers. Successfully retrieved details favor the accessible portion of the retained history; missingness is not assumed random. The sample lacks verified competitive-tier labels, complete version information, and context from immediately before decisions. Individual real records and precise timestamps are not included in this public repository.
+
+## Availability, time, and refusal evidence
+
+- Full details and list-only summaries are different information layers. A list lineup or placement must not be expanded into invented participants, rounds, or action sequences. The 67,149 stage records belong only to the 671 full details.
+- One retained request returned business code `-130`, with a message that the record was older than 30 days **or** the mode did not support details. That response establishes one observed refusal, not 147 observed refusals or a universal rule for every older record.
+- Another 146 candidates were not retried after that stop. They retain earlier rate-limit outcomes; "not retried after the stop" does not mean "never requested."
+- Interpreting the retained `endTime` values as Unix seconds, all 147 summary-only cases are older than 30 days at the retained stop reference. This offline age check does not establish the cause of every missing detail or predict that every request would be refused. Original display-time timezones remain unverified.
+- No server unlock time is known. A local traffic-spacing timestamp is not an eligibility signal or permission to retry. The offline import and public documentation update do not send collection requests or bypass the service restriction.
+
+The prior 476-match snapshot remains preserved separately. The expanded version was checked for composite-key uniqueness, overlap, source hashes, and agreement between list summaries and full details. These checks do not establish global match identity across different source profiles.
 
 ## Learning and performance evaluation
 
